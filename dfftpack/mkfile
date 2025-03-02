@@ -1,0 +1,56 @@
+</$objtype/mkfile
+F77 = f2c
+CC = pcc
+
+CFLAGS = -I $home/lib/f2c/include
+
+OBJ = cfftb1.$O \
+dfftb.$O \
+dfftf.$O \
+dffti.$O \
+cfftf1.$O \
+cffti1.$O \
+cosqb1.$O \
+cosqf1.$O \
+ezfft1.$O \
+passb.$O \
+passb2.$O \
+passb3.$O \
+passb4.$O \
+passb5.$O \
+passf.$O \
+passf2.$O \
+passf3.$O \
+passf4.$O \
+passf5.$O \
+radb2.$O \
+radb3.$O \
+radb4.$O \
+radb5.$O \
+radbg.$O \
+radf2.$O \
+radf3.$O \
+radf4.$O \
+radf5.$O \
+radfg.$O \
+rfftb1.$O \
+rfftf1.$O \
+rffti1.$O \
+sint1.$O 
+
+
+%.c: %.f
+    $F77 $stem.f
+
+%.$O: %.c
+    $CC -c $CFLAGS $stem.c
+
+libdfftpack.a$O: $OBJ
+     ar r $target $newprereq
+
+install:V:
+     mkdir -p $home/lib/fftpack
+     cp libdfftpack.a$O $home/lib/fftpack/libdfftpack.a
+
+clean:V:
+        rm -f libdfftpack.a$O *.$O *.c
