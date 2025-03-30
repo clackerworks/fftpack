@@ -1,0 +1,73 @@
+</$objtype/mkfile
+F77 = f2c
+CC = pcc
+
+CFLAGS = -I $home/lib/f2c/include
+
+OBJ=\
+cfftb.$O \
+cfftb1.$O \
+cfftf.$O \
+cfftf1.$O \
+cffti.$O \
+cffti1.$O \
+cosqb.$O \
+cosqb1.$O \
+cosqf.$O \
+cosqf1.$O \
+cosqi.$O \
+cost.$O \
+costi.$O \
+ezfft1.$O \
+ezfftb.$O \
+ezfftf.$O \
+ezffti.$O \
+passb.$O \
+passb2.$O \
+passb3.$O \
+passb4.$O \
+passb5.$O \
+passf.$O \
+passf2.$O \
+passf3.$O \
+passf4.$O \
+passf5.$O \
+radb2.$O \
+radb3.$O \
+radb4.$O \
+radb5.$O \
+radbg.$O \
+radf2.$O \
+radf3.$O \
+radf4.$O \
+radf5.$O \
+radfg.$O \
+rfftb.$O \
+rfftb1.$O \
+rfftf.$O \
+rfftf1.$O \
+rffti.$O \
+rffti1.$O \
+sinqb.$O \
+sinqf.$O \
+sinqi.$O \
+sint.$O \
+sint1.$O \
+sinti.$O \
+
+
+%.c: %.f
+    $F77 $stem.f
+
+%.$O: %.c
+    $CC -c $CFLAGS $stem.c
+
+libsfftpack.a$O: $OBJ
+     ar r $target $newprereq
+
+install:V:
+     mkdir -p $home/lib/fftpack
+     cp libsfftpack.a$O $home/lib/fftpack/libsfftpack.a
+
+clean:V:
+        rm -f libsfftpack.a$O *.$O *.c
