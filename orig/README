@@ -1,0 +1,3 @@
+copy from netlib.org/fftpack 
+using wget -np --mirror https://netlib.org/fftpack
+date 2025 Mar 30
